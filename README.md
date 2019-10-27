@@ -65,7 +65,9 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 
 ---
 
-https://www.youtube.com/qIyPSQCZfNU
+<div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qIyPSQCZfNU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 
 O projeto deve ser iniciado, com o seguinte comando na raiz do projeto
