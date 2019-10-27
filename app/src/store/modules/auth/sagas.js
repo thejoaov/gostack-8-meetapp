@@ -29,7 +29,7 @@ export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
 
-    yield call(api.post, 'users', {
+    const response = yield call(api.post, 'users', {
       name,
       email,
       password,
