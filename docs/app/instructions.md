@@ -32,10 +32,27 @@ Para instalar a versão de produção, você pode usar o comando `yarn release:a
 A versão pra ios não foi testada de nenhuma forma, portanto é altamente recomendável utilizar apenas a versão para android.
 Para iniciar o projeto no iOs, o comando é `yarn ios`, e para a versão de produção, `yarn release:ios`.
 
+#### Comandos disponíveis no package.json
+
+**ATENÇÃO**: Ao iniciar a versão de produção através do `yarn release:*platform*`, a aplicação estará utilizando a API de produção. Esta variante não é recomendada para desenvolvimento.
+
+```json
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "release:android": "react-native run-android --variant=release",
+    "release:ios": "react-native run-ios --variant=release",
+    "test": "jest",
+    "lint": "eslint .",
+    "postinstall": "jetify"
+  },
+```
+
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/login2.png" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/create-account2.png" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/dashboard.gif" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/profile.png" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/subscriptions.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/login2.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/create-account2.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/dashboard.gif" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/profile.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/subscriptions.png" height="420">
