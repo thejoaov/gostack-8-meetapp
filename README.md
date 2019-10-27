@@ -32,20 +32,20 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 - Aplicativo mobile, construído pra android, apenas.
 - Construído em React Native, redux, styled-components, entre outras ferramentas.
 
-#### Docs - [Instruções]()
+#### Docs - [Instruções](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/docs/instructions.md)
 
 - Servidor de documentação, exemplificando os dados que devem ser enviados para a API.
 - Construído com [Insomnia Documenter](https://github.com/jozsefsallai/insomnia-documenter).
 - Quando o projeto é iniciado pelo docker-compose da raiz do projeto, ele roda no endereço [localhost:5000](http://localhost:5000).
 
-#### Server - [Instruções]()
+#### Server - [Instruções](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/server/instructions.md)
 
 - Servidor backend da aplicação.
 - Construído com Sequelize ORM, express, multer, bee-queue, sucrase, e outras ferramentas. A documentação da API está disponível através da da aplicação de documentação.
 - Quando o projeto é iniciado pelo docker-compose da raiz do projeto, ele roda no endereço [localhost:3333](http://localhost:3333).
 - Também hospedado no heroku, como versão de "produção": [Backend MeetApp](https://backend-meetapp.herokuapp.com)
 
-#### Web - [Instruções]()
+#### Web - [Instruções](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/web/instructions.md)
 
 - Aplicação frontend web do projeto.
 - Construído com create-react-app, redux, styled-components e outras ferramentas.
@@ -73,7 +73,7 @@ O projeto deve ser iniciado, com o seguinte comando na raiz do projeto
 $ docker-compose up
 ```
 
-  <img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/docker-compose-up.gif" height="420">
+  <img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/server/docker-compose-up.gif" height="420">
 
 Isso vai iniciar os seguintes containers, na seguinte ordem:
 

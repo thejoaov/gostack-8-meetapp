@@ -6,8 +6,6 @@ Dessa forma o servidor backend irá rodar isoladamente do restante da aplicaçã
 
 ## Screenshots
 
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/login2.png" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/create-account2.png" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/dashboard.gif" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/profile.png" height="420">
-<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/app/subscriptions.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/server/docker-compose-up.gif" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/server/docker-compose-up-down.gif" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/server/docker-compose-down.gif" height="420">
