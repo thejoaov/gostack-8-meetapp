@@ -2,7 +2,7 @@ import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
-import { signInSuccess, signFailure } from './actions';
+import { signInSuccess, signFailure, signInRequest } from './actions';
 import history from '~/services/history';
 
 export function* signIn({ payload }) {
@@ -35,7 +35,10 @@ export function* signUp({ payload }) {
       password,
     });
 
-    history.push('/');
+    yield put(signInRequest(email, password));
+    toast.success('Usuário criado com sucesso, fazendo login...', {
+      autoClose: 2000,
+    });
   } catch (error) {
     toast.error('Erro na autenticação, verifique seus dados');
     yield put(signFailure());

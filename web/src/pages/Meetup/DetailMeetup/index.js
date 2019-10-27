@@ -3,6 +3,7 @@ import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
 import { MdLocationOn, MdEvent } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 import { Container, Content, Footer } from './styles';
 
@@ -10,8 +11,11 @@ import api from '~/services/api';
 import history from '~/services/history';
 
 export default function DetailMeetup({ match }) {
+  const profile = useSelector(state => state.user.profile);
+
   const [meetup, setMeetup] = useState({});
   const [creator, setCreator] = useState({});
+
   useEffect(() => {
     const { id } = match.params;
     async function loadMeetup() {
@@ -51,20 +55,22 @@ export default function DetailMeetup({ match }) {
           <h1>{meetup.title}</h1>
           <h3>{creator.name}</h3>
         </div>
-        <aside>
-          <button
-            onClick={() =>
-              history.push(`/meetup/${meetup.id}/edit`, { meetup })
-            }
-            className="edit"
-            type="button"
-          >
-            Editar
-          </button>
-          <button onClick={() => handleCancel(meetup.id)} type="button">
-            Cancelar
-          </button>
-        </aside>
+        {creator.id === profile.id && (
+          <aside>
+            <button
+              onClick={() =>
+                history.push(`/meetup/${meetup.id}/edit`, { meetup })
+              }
+              className="edit"
+              type="button"
+            >
+              Editar
+            </button>
+            <button onClick={() => handleCancel(meetup.id)} type="button">
+              Cancelar
+            </button>
+          </aside>
+        )}
       </header>
       <Content>
         <img src={meetup.imageUrl} alt={meetup.title} />

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   align-self: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 
   label {
     transition: all 0.5s;
@@ -10,6 +10,13 @@ export const Container = styled.div`
 
     &:hover {
       opacity: 0.7;
+    }
+
+    p {
+      margin: 20px 0;
+      color: #fb6f91;
+      align-self: center;
+      font-weight: bold;
     }
 
     img {

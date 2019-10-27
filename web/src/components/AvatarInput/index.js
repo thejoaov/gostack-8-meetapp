@@ -40,12 +40,10 @@ export default function AvatarInput() {
     <Container>
       <label htmlFor="avatar">
         <img
-          src={
-            preview || 'https://api.adorable.io/avatars/285/abott@adorable.png'
-          }
-          alt=""
+          src={preview || 'https://api.adorable.io/avatars/120/random'}
+          alt="profile"
         />
-
+        {!preview && <p>A imagem de perfil é obrigatória</p>}
         <input
           type="file"
           id="avatar"

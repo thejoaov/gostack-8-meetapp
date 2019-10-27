@@ -15,7 +15,7 @@ const schema = Yup.object().shape({
   password: Yup.string()
     .min(6, 'A senha deve ter no mínimo 6 caracteres')
     .required('A senha é obrigatória'),
-  avatar_id: Yup.number().required('A imagem de perfil é obrigatória.'),
+  avatar_id: Yup.string().required('A imagem de perfil é obrigatória.'),
 });
 
 export default function SignUp() {

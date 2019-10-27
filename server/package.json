@@ -17,7 +17,6 @@
     "start:queue": "sucrase-node src/queue.js",
     "dev:server": "yarn migrate && nodemon src/server.js",
     "dev:queue": "nodemon src/queue.js",
-    "doc": "serve ./docs/local",
     "migrate": "sequelize db:migrate"
   },
   "dependencies": {
