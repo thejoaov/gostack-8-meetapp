@@ -20,7 +20,7 @@ export function* signIn({ payload }) {
 
     yield put(signInSuccess(token, user));
   } catch (err) {
-    Alert.alert('Authentication error', 'An error occurred, check your data.');
+    Alert.alert('Erro no Login', 'Verifique os dados, e tente novamente');
     yield put(signFailure());
   }
 }
@@ -46,7 +46,11 @@ export function* signUp({ payload }) {
 
     yield put(signInSuccess(token, user));
   } catch (err) {
-    Alert.alert('Registration error', 'An error occurred, check your data.');
+    console.tron.log(err);
+    Alert.alert(
+      'Erro na criação de conta',
+      'Verifique os dados e tente novamente',
+    );
 
     yield put(signFailure());
   }

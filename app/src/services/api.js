@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: __DEV__
-    ? 'http://localhost:3333'
-    : 'https://backend-meetapp.herokuapp.com',
+const development = axios.create({
+  baseURL: 'http://localhost:3333',
 });
 
-export default api;
+const production = axios.create({
+  baseURL: 'https://backend-meetapp.herokuapp.com',
+});
+
+export default __DEV__ ? development : production;

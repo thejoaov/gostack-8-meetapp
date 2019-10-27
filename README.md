@@ -27,7 +27,7 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 
 # Estrutura
 
-#### App - [Instruções]()
+#### App - [Instruções](https://gtihub.com/thejoaov/bootcamp-meetapp/blob/master/docs/app/instructions.md)
 
 - Aplicativo mobile, construído pra android, apenas.
 - Construído em React Native, redux, styled-components, entre outras ferramentas.
@@ -65,10 +65,7 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 
 ---
 
-<div>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/qIyPSQCZfNU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
 
 O projeto deve ser iniciado, com o seguinte comando na raiz do projeto
 
@@ -76,73 +73,34 @@ O projeto deve ser iniciado, com o seguinte comando na raiz do projeto
 $ docker-compose up
 ```
 
-Isso vai iniciar
+  <img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/docker-compose-up.gif" height="420">
 
-## Para os menos apressados
+Isso vai iniciar os seguintes containers, na seguinte ordem:
 
-### 1 - Variáveis de ambiente
+- **postgres-database**
+  - Banco de dados postgres.
+  - Usuário e senha do postgres podem ser definidos através do arquivo [docker-compose.yml](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docker-compose.yml). Também deve ser definido as mesmas variáveis num arquivo .env no diretório server, de acordo com o .env.example.
+  - **Atenção:** Por padrão, sem a modificação das variáveis, o acesso ao banco de dados postgres é `usuário: postgres`, sem senha.
+- **frontend-application**
+  - Aplicação web front-end do meetapp. Acessível através do endereço [localhost:3000](http://localhost:3000)
+- **redis-database**
+  - Banco de dados Redis, utilizado para guardar a fila de tarefas.
+- **mongo-database**
+  - Banco de dados mongoDB, utilizado para armazenamento de esquemas.
+- **mailhog-mail-service**
+  - Serviço de email, capturando os emails enviados pela porta smtp.
+- **api-docs-application**
+  - Aplicação local da documentação da API, feita com insomnia documenter.
+- **bee-queue-service**
+  - Serviço da fila de tarefas (emails), utilizando bee-queue.
+- **backend-application**
+  - Aplicação backend da API. Acessível através da rota [localhost:3333](http://localhost:3333)
+    calhost:3333](http://localhost:3333)
 
-Crie um arquivo .env na raiz do projeto, bastando copiar o conteúdo do .env.example encontrado na raiz do projeto.
-
-### 2 - Instale as bibliotecas
-
-Instale as dependências na raiz do projeto.
-
-```
-$ yarn
-```
-
-_Opcional: recomendável a instalação do sequelize-cli de forma global._
-
-yarn:
-
-```
-$ yarn global add sequelize-cli
-```
-
-npm:
-
-```
-$ npm i -g sequelize-cli
-```
-
-### 3 - Inicie a aplicação
-
-A aplicação inicia todos os serviços a partir do comando
-
-```
-$ docker-compose up
-```
-
-<div align="center">
-<img src="https://i.imgur.com/mMknsiN.gif" height="420">
-</div>
-
-O docker vai iniciar um container para cada serviço na seguinte ordem:
-
-- Container do Postgres, com o o banco de dados Postgres (Para os dados da aplicação);
-- Container do Redis, com o o banco de dados Redis (Para a fila de trabalhos);
-- Container do MongoDB, guardando as relações de esquema.
-- Container do Mailhog (para depuração de envio de emails), acessível através do endereço [localhost:8025](http://localhost:8025)
-- Container do processo da Queue do [Bee-queue](https://bee-queue.com/) (Fila de trabalhos);
-- Container do processo da documentação, rodando o servidor estático da documentação (Docs), acessível através do endereço [localhost:5000](http://localhost:5000)
-- Container do processo do App, rodando primeiro o comando
-  `yarn migrate` (que chama o Sequelize `yarn sequelize db:migrate`) para realizar as migrações no banco, e em seguida o processo principal da Aplicação, acessível através do endereço [localhost:3333](http://localhost:3333)
-
-A partir daqui, a aplicação já estará pronta para receber as requisições. Se deseja testar as rotas, o arquivo com a configuração de rotas para teste no insomnia está na pasta [docs/local/insomnia.json](https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/config/insomnia.json)
-Faça o download e importe no programa.
-
-### 4 - (Opcional) Insomnia
-
-O Insomnia é uma ferramenta de testes de rotas, muito eficiente, prático, leve e customizável. Link para download na [Página oficial](https://insomnia.rest/download/).
+A partir daqui, a aplicação já estará pronta para receber as requisições. Se deseja testar as rotas, o arquivo com a configuração de rotas para teste no insomnia está na pasta [docs/insomnia.json](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/src/insomnia.json).
+Faça o download e importe no [Insomnia](https://github.com/getinsomnia/insomnia), que é uma ferramenta de testes de rotas, muito eficiente, prático, leve e customizável. [Link para download](https://insomnia.rest/download/).
 
 ![](https://i.imgur.com/wTn2ltn.png)
-
----
-
-# Documentação
-
-A documentação da API está disponível ao rodar a aplicação com o `docker-compose up`, no endereço [localhost:5000](http://localhost:5000), ou no [Github Pages](https://thejoaov.github.io/bootcamp-meetapp/).
 
 ---
 
