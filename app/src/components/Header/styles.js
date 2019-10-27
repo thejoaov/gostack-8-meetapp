@@ -1,0 +1,15 @@
+import styled from 'styled-components/native';
+
+export const Container = styled.SafeAreaView.attrs({
+  elevation: 2,
+})`
+  background: #000;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+`;
+
+export const Logo = styled.Image`
+  width: 44px;
+  height: 42.3px;
+`;

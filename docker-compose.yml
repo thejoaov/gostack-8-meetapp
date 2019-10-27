@@ -1,0 +1,89 @@
+version: '3'
+
+services:
+  web:
+    container_name: 'frontend-application'
+    ports:
+      - 3000:3000
+    build: web
+    command: yarn start
+    volumes:
+      - '.:/usr/frontend'
+
+  postgres:
+    container_name: 'postgres-database'
+    image: 'postgres:11.5-alpine'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    container_name: 'redis-database'
+    image: redis:alpine
+    depends_on: ['postgres']
+
+  mongo:
+    container_name: 'mongo-database'
+    ports:
+      - '27017:27017'
+    image: mongo
+    depends_on: ['redis']
+
+  mailhog:
+    container_name: 'mailhog-mail-service'
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
+    depends_on: ['mongo']
+
+  docs:
+    container_name: 'api-docs-application'
+    build: docs
+    ports:
+      - '5000:5000'
+    command: yarn start
+    volumes:
+      - '.:/usr/documentation'
+    depends_on: ['mailhog']
+
+  queue:
+    container_name: 'bee-queue-service'
+    build: server
+    command: yarn dev:queue
+    environment:
+      - DB_HOST=postgres
+      - MONGO_HOST=mongo
+      - REDIS_HOST=redis
+      - MAIL_HOST=mailhog
+      - MAIL_PORT=1025
+      - MAIL_USER=
+      - MAIL_PASS=
+    volumes:
+      - '.:/usr/backend'
+    depends_on: ['docs']
+
+  server:
+    container_name: 'backend-application'
+    build: server
+    ports:
+      - '3333:3333'
+    command: yarn dev:server
+    environment:
+      - DB_HOST=postgres
+      - MONGO_HOST=mongo
+      - REDIS_HOST=redis
+      - MAIL_HOST=mailhog
+      - MAIL_PORT=1025
+      - MAIL_USER=
+      - MAIL_PASS=
+    volumes:
+      - '.:/usr/backend'
+    depends_on: ['queue']
+
+volumes:
+  postgres_data:
