@@ -100,7 +100,9 @@ Isso vai iniciar os seguintes containers, na seguinte ordem:
 A partir daqui, a aplicação já estará pronta para receber as requisições. Se deseja testar as rotas, o arquivo com a configuração de rotas para teste no insomnia está na pasta [docs/insomnia.json](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/src/insomnia.json).
 Faça o download e importe no [Insomnia](https://github.com/getinsomnia/insomnia), que é uma ferramenta de testes de rotas, muito eficiente, prático, leve e customizável. [Link para download](https://insomnia.rest/download/).
 
-![](https://i.imgur.com/wTn2ltn.png)
+<div align="center">
+  <img src="https://i.imgur.com/wTn2ltn.png" height="400">
+</div>
 
 ---
 
