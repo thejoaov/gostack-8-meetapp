@@ -27,7 +27,7 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 
 # Estrutura
 
-#### App - [Instruções](https://gtihub.com/thejoaov/bootcamp-meetapp/blob/master/docs/app/instructions.md)
+#### App - [Instruções](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/app/instructions.md)
 
 - Aplicativo mobile, construído pra android, apenas.
 - Construído em React Native, redux, styled-components, entre outras ferramentas.

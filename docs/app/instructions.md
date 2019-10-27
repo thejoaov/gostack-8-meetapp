@@ -1,4 +1,4 @@
-# Rodando a aplicação Mobile
+# Instruções para a aplicação Mobile
 
 Para rodar a aplicação mobile de forma local, primeiro, abra um terminal na pasta `bootcamp-meetapp/app` e instale as dependências, com o comando `yarn`. Em seguida, inicie o servidor de bundle com o comando `yarn start`.
 
@@ -31,3 +31,11 @@ Para instalar a versão de produção, você pode usar o comando `yarn release:a
 
 A versão pra ios não foi testada de nenhuma forma, portanto é altamente recomendável utilizar apenas a versão para android.
 Para iniciar o projeto no iOs, o comando é `yarn ios`, e para a versão de produção, `yarn release:ios`.
+
+## Screenshots
+
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/login2.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/create-account2.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/dashboard.gif" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/profile.png" height="420">
+<img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/mobile/subscriptions.png" height="420">
