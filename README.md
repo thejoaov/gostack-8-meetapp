@@ -20,8 +20,9 @@
     <img alt="GitHub" src="https://img.shields.io/github/license/thejoaov/bootcamp-meetapp.svg">
   </a>
 </p>
-
+<div align="center">
 Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o desafio final da certificação.
+</div>
 
 ---
 
@@ -88,16 +89,15 @@ Isso vai iniciar os seguintes containers, na seguinte ordem:
 - **mongo-database**
   - Banco de dados mongoDB, utilizado para armazenamento de esquemas.
 - **mailhog-mail-service**
-  - Serviço de email, capturando os emails enviados pela porta smtp.
+  - Serviço de email, capturando os emails enviados pela porta smtp. Acessível através do endereço [localhost:8025](http://localhost:8025)
 - **api-docs-application**
-  - Aplicação local da documentação da API, feita com insomnia documenter.
+  - Aplicação local da documentação da API. Acessível através do endereço [localhost:5000](http://localhost:5000)
 - **bee-queue-service**
   - Serviço da fila de tarefas (emails), utilizando bee-queue.
 - **backend-application**
   - Aplicação backend da API. Acessível através da rota [localhost:3333](http://localhost:3333)
-    calhost:3333](http://localhost:3333)
 
-A partir daqui, a aplicação já estará pronta para receber as requisições. Se deseja testar as rotas, o arquivo com a configuração de rotas para teste no insomnia está na pasta [docs/insomnia.json](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/src/insomnia.json).
+A partir daqui, a aplicação já estará pronta para receber as requisições. Se deseja testar as rotas, o arquivo com a configuração de rotas para teste no insomnia está na pasta [docs/src/insomnia.json](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docs/src/insomnia.json).
 Faça o download e importe no [Insomnia](https://github.com/getinsomnia/insomnia), que é uma ferramenta de testes de rotas, muito eficiente, prático, leve e customizável. [Link para download](https://insomnia.rest/download/).
 
 <div align="center">
