@@ -63,7 +63,7 @@ export default function Profile() {
             icon="person-outline"
             autoCorrect={false}
             autoCapitalize="words"
-            placeholder="Name"
+            placeholder="Nome"
             returnKeyType="next"
             onSubmitEditing={() => emailRef.current.focus()}
             value={name}
@@ -88,7 +88,7 @@ export default function Profile() {
           <FormInput
             icon="lock-outline"
             secureTextEntry
-            placeholder="Current password"
+            placeholder="Senha atual"
             ref={oldPasswordRef}
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
@@ -99,7 +99,7 @@ export default function Profile() {
           <FormInput
             icon="lock-outline"
             secureTextEntry
-            placeholder="New password"
+            placeholder="Nova senha"
             ref={passwordRef}
             returnKeyType="next"
             onSubmitEditing={() => confirmPasswordRef.current.focus()}
@@ -110,7 +110,7 @@ export default function Profile() {
           <FormInput
             icon="lock-outline"
             secureTextEntry
-            placeholder="Confirm password"
+            placeholder="Confirme a nova senha"
             ref={confirmPasswordRef}
             returnKeyType="send"
             onSubmitEditing={handleSubmit}
@@ -118,7 +118,7 @@ export default function Profile() {
             onChangeText={setConfirmPassword}
           />
 
-          <SubmitButton onPress={handleSubmit}>Update profile</SubmitButton>
+          <SubmitButton onPress={handleSubmit}>Atualizar Perfil</SubmitButton>
           <LogoutButton onPress={handleLogout}>Logout</LogoutButton>
         </Form>
       </Container>

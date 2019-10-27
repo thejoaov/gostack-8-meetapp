@@ -36,7 +36,7 @@ services:
       - MONGO_HOST=mongo
       - REDIS_HOST=redis
       - MAIL_HOST=mailhog
-      - MAIL_PORT=2525
+      - MAIL_PORT=1025
       - MAIL_USER=
       - MAIL_PASS=
     volumes:
@@ -53,7 +53,7 @@ services:
       - MONGO_HOST=mongo
       - REDIS_HOST=redis
       - MAIL_HOST=mailhog
-      - MAIL_PORT=2525
+      - MAIL_PORT=1025
       - MAIL_USER=
       - MAIL_PASS=
     volumes:

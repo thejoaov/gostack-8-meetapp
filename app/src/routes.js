@@ -27,11 +27,10 @@ export default (isSigned = false) =>
           {
             animationEnabled: true,
             resetOnBlur: true,
-            lazy: false,
             tabBarOptions: {
               keyboardHidesTabBar: true,
               activeTintColor: colors.button,
-              inactiveTintColor: 'rgba(255, 255, 255, 0.6)',
+              inactiveTintColor: colors.card,
               style: {
                 backgroundColor: darken('0.1', colors.input),
                 height: 60,

@@ -9,7 +9,7 @@ export default function Button({ children, loading, ...rest }) {
   return (
     <Container {...rest}>
       {loading ? (
-        <ActivityIndicator size="small" color={colors.ctabutton} />
+        <ActivityIndicator size="small" color={colors.card} />
       ) : (
         <Text>{children}</Text>
       )}

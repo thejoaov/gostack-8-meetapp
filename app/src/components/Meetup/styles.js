@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 import Button from '~/components/Button';
 import colors from '~/styles/colors';
+import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View.attrs({
   elevation: 2,
@@ -37,18 +38,30 @@ export const InfoRow = styled.View`
   flex-direction: row;
   align-items: center;
   margin-bottom: 5px;
-
-  ${({ last }) =>
-    last &&
-    `
-    margin-bottom: 20px;
-  `}
 `;
 
 export const InfoText = styled.Text`
   font-size: 14px;
   color: ${colors.placeholder};
   margin-left: 6px;
+`;
+
+export const DetailsButtonText = styled.Text`
+  font-size: 16px;
+  color: ${colors.ctabutton};
+  font-weight: bold;
+  margin: 30px auto;
+`;
+
+export const Details = styled.Text`
+  font-size: 14px;
+  color: ${colors.placeholder};
+  margin-left: 6px;
+  margin-bottom: 30px;
+`;
+
+export const DetailsButton = styled(RectButton)`
+  color: ${colors.ctabutton};
 `;
 
 export const CancelButton = styled(Button)`

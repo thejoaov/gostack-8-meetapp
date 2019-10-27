@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { format, subDays, addDays } from 'date-fns';
 
 import Header from '~/components/Header';
-import Loading from '~/components/Loading';
 import Meetup from '~/components/Meetup';
 import Background from '~/components/Background';
 
@@ -23,11 +22,10 @@ import colors from '~/styles/colors';
 
 function Dashboard({ isFocused }) {
   const [date, setDate] = useState(new Date());
-  const [loading, setLoading] = useState(true);
   const [meetups, setMeetups] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
-  const [refreshing, setRefreshing] = useState(false);
+  const [refreshing, setRefreshing] = useState(true);
 
   async function loadMeetups(selectedPage = 1) {
     if (selectedPage > 1 && !hasMore) return;
@@ -42,12 +40,12 @@ function Dashboard({ isFocused }) {
     );
     setHasMore(response.data.total_pages > selectedPage);
     setPage(selectedPage);
-    setLoading(false);
+    setRefreshing(false);
   }
 
   useEffect(() => {
     if (isFocused) {
-      setLoading(true);
+      setRefreshing(true);
       loadMeetups();
     }
     // eslint-disable-next-line
@@ -64,10 +62,9 @@ function Dashboard({ isFocused }) {
   async function handleRegister(id) {
     try {
       await api.post(`meetups/${id}/subscriptions`);
-      Alert.alert('Succcess', 'You have subscribed to this meetup!');
+      Alert.alert('#Delicinha!', 'Você se inscreveu nesse meetup!');
     } catch (error) {
-      const message = error.response.data.error;
-      Alert.alert('Error', message);
+      Alert.alert('Deu ruim', error.response.data.error);
     }
   }
 
@@ -85,9 +82,7 @@ function Dashboard({ isFocused }) {
           </DateButton>
         </DateSelect>
 
-        {loading && <Loading />}
-
-        {!loading &&
+        {!refreshing &&
           (meetups.length ? (
             <List
               data={meetups}
@@ -106,7 +101,7 @@ function Dashboard({ isFocused }) {
           ) : (
             <Empty>
               <Icon name="event-busy" size={45} color={colors.placeholder} />
-              <EmptyText>There are no meetups for this date yet.</EmptyText>
+              <EmptyText>Sem meetups por enquanto :/</EmptyText>
             </Empty>
           ))}
       </Container>
@@ -117,7 +112,7 @@ function Dashboard({ isFocused }) {
 Dashboard.navigationOptions = {
   tabBarLabel: 'Meetups',
   tabBarIcon: ({ tintColor }) => (
-    <Icon name="format-list-bulleted" size={20} color={tintColor} />
+    <Icon name="event" size={20} color={tintColor} />
   ),
 };
 

@@ -59,7 +59,9 @@ class MeetupController {
 
       return res.json(meetup);
     } catch (err) {
-      return res.status(404).json({ error: 'Meetup not found', details: err });
+      return res
+        .status(404)
+        .json({ error: 'Meetup não encontrado', details: err });
     }
   }
 
@@ -74,12 +76,12 @@ class MeetupController {
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({
-        error: 'Validation failed. Check the requisition and try again',
+        error: 'Falha na validação. Cheque os dados, e tente novamente.',
       });
     }
 
     if (isBefore(parseISO(req.body.date), new Date())) {
-      return res.status(400).json({ error: 'Meetup date is invalid' });
+      return res.status(400).json({ error: 'A data do meetup é inválida' });
     }
 
     const user_id = req.userId;
@@ -102,7 +104,9 @@ class MeetupController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation fails' });
+      return res.status(400).json({
+        error: 'Falha na validação. Cheque os dados e tente novamente.',
+      });
     }
 
     const user_id = req.userId;
@@ -124,15 +128,17 @@ class MeetupController {
     });
 
     if (meetup.user_id !== user_id) {
-      return res.status(401).json({ error: 'Not authorized.' });
+      return res.status(401).json({ error: 'Não autorizado.' });
     }
 
     if (isBefore(parseISO(req.body.date), new Date())) {
-      return res.status(400).json({ error: 'Meetup date invalid' });
+      return res.status(400).json({ error: 'Data inválida para este meetup' });
     }
 
     if (meetup.past) {
-      return res.status(400).json({ error: "Can't update past meetups." });
+      return res
+        .status(400)
+        .json({ error: 'Não é possível atualizar meetups passados' });
     }
 
     await meetup.update(req.body);
@@ -160,11 +166,13 @@ class MeetupController {
     });
 
     if (meetup.user_id !== user_id) {
-      return res.status(401).json({ error: 'Not authorized.' });
+      return res.status(401).json({ error: 'Não autorizado.' });
     }
 
     if (meetup.past) {
-      return res.status(400).json({ error: "Can't delete past meetups." });
+      return res
+        .status(400)
+        .json({ error: 'Não é possível cancelar meetups passados' });
     }
 
     await meetup.destroy();

@@ -29,13 +29,18 @@ export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
 
-    const response = yield call(api.post, 'users', {
+    yield call(api.post, 'users', {
       name,
       email,
       password,
     });
 
-    const { token, user } = response.data;
+    const login = yield call(api.post, 'sessions', {
+      email,
+      password,
+    });
+
+    const { user, token } = login.data;
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 

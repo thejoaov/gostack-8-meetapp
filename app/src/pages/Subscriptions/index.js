@@ -32,10 +32,13 @@ function Subscriptions({ isFocused }) {
     }
   }, [isFocused]);
 
-  async function handleCancel(id) {
+  async function handleCancel(item) {
     try {
-      await api.delete(`subscriptions/${id}`);
-      Alert.alert('Success', 'You have cancelled your subscription!');
+      await api.delete(`subscriptions/${item.id}`);
+      Alert.alert(
+        'Success',
+        `Sua inscrição no meetup "${item.meetup.title}" foi cancelada.`,
+      );
       loadSubscriptions();
     } catch (error) {
       const message = error.response.data.error;
@@ -57,14 +60,16 @@ function Subscriptions({ isFocused }) {
               renderItem={({ item }) => (
                 <Meetup
                   data={item.meetup}
-                  handleCancel={() => handleCancel(item.id)}
+                  handleCancel={() => handleCancel(item)}
                 />
               )}
             />
           ) : (
             <Empty>
               <Icon name="event-busy" size={45} color={colors.placeholder} />
-              <EmptyText>You haven't subscribed to any meetups yet.</EmptyText>
+              <EmptyText>
+                Você ainda não se inscreveu em nenhum meetup
+              </EmptyText>
             </Empty>
           ))}
       </Container>
@@ -73,9 +78,9 @@ function Subscriptions({ isFocused }) {
 }
 
 Subscriptions.navigationOptions = {
-  tabBarLabel: 'Subscriptions',
+  tabBarLabel: 'Inscrições',
   tabBarIcon: ({ tintColor }) => (
-    <Icon name="local-offer" size={20} color={tintColor} />
+    <Icon name="local-activity" size={20} color={tintColor} />
   ),
 };
 

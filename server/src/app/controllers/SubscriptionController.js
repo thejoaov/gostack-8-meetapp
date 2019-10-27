@@ -64,7 +64,7 @@ class SubscriptionController {
 
     if (!meetup) {
       return res.status(404).json({
-        error: `Meetup with id ${meetupId} not found.`,
+        error: `Meetup com id:${meetupId} não encontrado.`,
       });
     }
 
@@ -80,32 +80,33 @@ class SubscriptionController {
       ],
     });
 
-    if (paralelMeetups) {
-      return res.status(400).json({
-        error: 'Subscription in two Meetups at the same time are not allowed',
-      });
-    }
-
-    if (isBefore(new Date(meetup.date), new Date())) {
-      return res.status(400).json({
-        error: "You can't subscribe to past Meetups.",
-      });
-    }
-
-    if (meetup.user_id === req.userId) {
-      return res.status(400).json({
-        error: "You can't subscribe to your own Meetups",
-      });
-    }
-
     const subscriptionExists = await Subscription.findOne({
       where: { user_id: req.userId, meetup_id: meetupId },
     });
 
     if (subscriptionExists) {
       return res.status(400).json({
-        error: 'Already subscribed',
+        error: 'Você já está inscrito neste meetup',
         subscriptionExists,
+      });
+    }
+
+    if (paralelMeetups) {
+      return res.status(400).json({
+        error: 'Inscrição em dois meetups ao mesmo tempo não são permitidas.',
+      });
+    }
+
+    if (isBefore(new Date(meetup.date), new Date())) {
+      return res.status(400).json({
+        error: 'Não é possível se inscrever em meetups passados',
+      });
+    }
+
+    if (meetup.user_id === req.userId) {
+      return res.status(400).json({
+        error:
+          'Não é possível se inscrever nos meetups que você mesmo organiza',
       });
     }
 
@@ -129,24 +130,30 @@ class SubscriptionController {
 
     const subscription = await Subscription.findOne({
       where: { id, user_id: req.userId },
+      include: [
+        {
+          model: Meetup,
+          as: 'meetup',
+        },
+      ],
     });
 
     if (!subscription) {
       return res.status(404).json({
-        error: `Subscription to MeetUp with id ${subscription.meetup_id} not found.`,
+        error: `Inscrição no meetup de id: ${subscription.meetup_id} não encontrada`,
       });
     }
 
     if (isBefore(new Date(subscription.meetup.date), new Date())) {
       return res.status(400).json({
-        error: 'This Meetup is finished.',
+        error: 'Este meetup já foi encerrado.',
       });
     }
 
     await subscription.destroy();
 
     return res.json({
-      message: `Subscription to meetup with id ${subscription.meetup_id} was deleted.`,
+      message: `Sua inscrição no meetup "${subscription.meetup.title}" foi cancelada.`,
     });
   }
 }
