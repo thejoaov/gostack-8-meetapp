@@ -1,6 +1,6 @@
 # Instruções para a aplicação Mobile
 
-Para rodar a aplicação mobile de forma local, primeiro, abra um terminal na pasta `bootcamp-meetapp/app` e instale as dependências, com o comando `yarn`. Em seguida, inicie o servidor de bundle com o comando `yarn start`.
+Para rodar a aplicação mobile de forma local, primeiro certifique-se de que o sdk do android e o java jdk 8 instalados, e com as variáveis `ANDROID_HOME` e `JAVA_HOME` no `path`. Em seguida , abra um terminal na pasta `bootcamp-meetapp/app` e instale as dependências, com o comando `yarn`. Em seguida, inicie o servidor de bundle com o comando `yarn start`.
 
 Vá até o arquivo `src/services/api.js`, e na configuração de desenvolvimento, coloque o ip de sua máquina, dessa forma
 
