@@ -70,7 +70,7 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 
 O projeto deve ser iniciado, com o seguinte comando na raiz do projeto
 
-```
+```bash
 $ docker-compose up
 ```
 
