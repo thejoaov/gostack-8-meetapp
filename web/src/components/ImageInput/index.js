@@ -39,7 +39,7 @@ export default function AvatarInput() {
   return (
     <Container>
       <label htmlFor="image">
-        {preview && <img src={preview} alt="banner_meetapp" />}
+        {preview && <img src={preview} alt="image_meetapp" />}
 
         {!preview && (
           <div className="icon-add">

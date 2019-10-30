@@ -4,4 +4,4 @@ WORKDIR /usr/server
 
 COPY . ./
 
-RUN yarn
+RUN yarn && yarn build
