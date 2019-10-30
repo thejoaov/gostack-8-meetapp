@@ -18,7 +18,7 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_DB=meetapp
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
