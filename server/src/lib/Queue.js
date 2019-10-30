@@ -2,6 +2,7 @@ import Bee from 'bee-queue';
 import * as Sentry from '@sentry/node';
 import sentryConfig from '../config/sentry';
 import SubscriptionMail from '../app/jobs/SubscriptionMail';
+import redisConfig from '../config/redis';
 
 Sentry.init(sentryConfig);
 
@@ -18,7 +19,7 @@ class Queue {
     jobs.forEach(({ key, handle }) => {
       this.queues[key] = {
         bee: new Bee(key, {
-          redis: { url: process.env.REDIS_URL || 'redis://localhost:6379' },
+          redis: redisConfig(),
         }),
         handle,
       };
