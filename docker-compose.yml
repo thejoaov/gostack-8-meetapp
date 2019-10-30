@@ -18,7 +18,7 @@ services:
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_DATABASE=${DB_NAME}
+      - POSTGRES_DB=${DB_NAME}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
@@ -65,7 +65,7 @@ services:
       - MAIL_PASS=
     volumes:
       - '.:/usr/backend'
-    depends_on: ['docs']
+    depends_on: ['server']
 
   server:
     container_name: 'backend-application'
@@ -83,7 +83,7 @@ services:
       - MAIL_PASS=
     volumes:
       - '.:/usr/backend'
-    depends_on: ['queue']
+    depends_on: ['mailhog']
 
 volumes:
   postgres_data:

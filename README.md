@@ -80,8 +80,8 @@ Isso vai iniciar os seguintes containers, na seguinte ordem:
 
 - **postgres-database**
   - Banco de dados postgres.
-  - Usuário e senha do postgres podem ser definidos através do arquivo [docker-compose.yml](https://github.com/thejoaov/bootcamp-meetapp/blob/master/docker-compose.yml). Também deve ser definido as mesmas variáveis num arquivo .env no diretório server, de acordo com o .env.example.
-  - **Atenção:** Por padrão, sem a modificação das variáveis, o acesso ao banco de dados postgres é `usuário: postgres`, sem senha.
+  - Usuário e senha do postgres podem ser definidos através de dois arquivos .env, um na raiz do diretório, apenas com a configuração do banco de dados postgres, e outro de acordo com o conteúdo do arquivo [server/.env.example](https://github.com/thejoaov/bootcamp-meetapp/blob/master/server/.env.example), dentro da pasta `server`. 
+  - **Atenção:** Por padrão, sem a criação dos arquivo com as variáveis de ambiente, será utilizado o usuário padrão `postgres` e sem senha, o que pode causar uma falha de segurança.
 - **frontend-application**
   - Aplicação web front-end do meetapp. Acessível através do endereço [localhost:3000](http://localhost:3000)
 - **redis-database**
