@@ -68,6 +68,8 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 
 </div>
 
+Antes do projeto ser iniciado, é necessário definir as variáveis de ambiente. Portanto crie um arquivo `.env` ena raiz do projeto, com o conteúdo do arquivo [.env.example](https://github.com/thejoaov/bootcamp-meetapp/blob/master/.env.example).
+
 O projeto deve ser iniciado, com o seguinte comando na raiz do projeto
 
 ```bash
@@ -80,7 +82,7 @@ Isso vai iniciar os seguintes containers, na seguinte ordem:
 
 - **postgres-database**
   - Banco de dados postgres.
-  - Usuário e senha do postgres podem ser definidos através de dois arquivos .env, um na raiz do diretório, apenas com a configuração do banco de dados postgres, e outro de acordo com o conteúdo do arquivo [server/.env.example](https://github.com/thejoaov/bootcamp-meetapp/blob/master/server/.env.example), dentro da pasta `server`. 
+  - Usuário e senha do postgres podem ser definidos através de dois arquivos .env, um na raiz do diretório, apenas com a configuração do banco de dados postgres, e outro de acordo com o conteúdo do arquivo [server/.env.example](https://github.com/thejoaov/bootcamp-meetapp/blob/master/server/.env.example), dentro da pasta `server`.
   - **Atenção:** Por padrão, sem a criação dos arquivo com as variáveis de ambiente, será utilizado o usuário padrão `postgres` e sem senha, o que pode causar uma falha de segurança.
 - **frontend-application**
   - Aplicação web front-end do meetapp. Acessível através do endereço [localhost:3000](http://localhost:3000)
