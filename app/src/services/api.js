@@ -8,4 +8,4 @@ const production = axios.create({
   baseURL: 'http://157.245.214.25:3333',
 });
 
-export default !!__DEV__ ? development : production;
+export default __DEV__ ? development : production;
