@@ -12,7 +12,6 @@ import history from '~/services/history';
 
 export default function EditMeetup() {
   async function handleSubmit(data) {
-    console.tron.log(data);
     const response = await api.post('/meetups', data);
     const { id } = response.data;
     history.push(`/meetup/${id}`);
