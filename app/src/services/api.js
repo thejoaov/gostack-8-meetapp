@@ -5,7 +5,7 @@ const development = axios.create({
 });
 
 const production = axios.create({
-  baseURL: 'https://backend-meetapp.herokuapp.com',
+  baseURL: 'http://157.245.214.25:3333/',
 });
 
 export default __DEV__ ? development : production;
