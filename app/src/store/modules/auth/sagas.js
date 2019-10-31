@@ -29,7 +29,7 @@ export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
 
-    const response = yield call(api.post, 'users', {
+    yield call(api.post, 'users', {
       name,
       email,
       password,
@@ -46,13 +46,12 @@ export function* signUp({ payload }) {
 
     yield put(signInSuccess(token, user));
   } catch (err) {
-    console.tron.log(err);
     Alert.alert(
       'Erro na criação de conta',
       'Verifique os dados e tente novamente',
     );
-
     yield put(signFailure());
+    throw new Error(err);
   }
 }
 
