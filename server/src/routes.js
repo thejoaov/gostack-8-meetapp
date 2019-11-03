@@ -13,11 +13,21 @@ import MeetupController from './app/controllers/MeetupController';
 import OrganizingController from './app/controllers/OrganizingController';
 import SubscriptionController from './app/controllers/SubscriptionController';
 
+import { version } from '../package.json';
+
 const routes = new Router();
 
 const upload = multer(multerConfig);
 
 routes.use(cors());
+
+routes.get('/', (req, res) => {
+  res.json({
+    time: new Date(),
+    message: 'Welcome to MeetApp API, have a nice day!',
+    version,
+  });
+});
 
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);

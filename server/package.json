@@ -13,11 +13,10 @@
   ],
   "scripts": {
     "start": "concurrently -k \"yarn start:server\" \"yarn start:queue\"",
-    "start:server": "yarn migrate && node dist/server.js",
+    "start:server": "node dist/server.js",
     "start:queue": "node dist/queue.js",
-    "dev:server": "yarn migrate && nodemon src/server.js",
+    "dev:server": "nodemon src/server.js",
     "dev:queue": "nodemon src/queue.js",
-    "migrate": "sequelize db:migrate",
     "build": "sucrase ./src -d ./dist --transforms imports"
   },
   "dependencies": {
