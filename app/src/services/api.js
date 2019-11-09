@@ -5,7 +5,7 @@ const development = axios.create({
 });
 
 const production = axios.create({
-  baseURL: 'http://157.245.214.25:3331',
+  baseURL: 'https://thejoaov.tech',
 });
 
 export default __DEV__ ? development : production;
