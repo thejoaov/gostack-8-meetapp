@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: 'meetapp-database-postgres'
+    image: 'postgres:11.5-alpine'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    container_name: 'meetapp-database-redis'
+    ports:
+      - '6379:6379'
+    image: redis:alpine
+
+  mongo:
+    container_name: 'meetapp-database-mongo'
+    ports:
+      - '27017:27017'
+    image: mongo
+
+volumes:
+  postgres_data:

@@ -14,17 +14,9 @@ class Database {
   constructor() {
     this.connection = new Sequelize(databaseConfig);
 
-    this.mongoConnection = mongoose.connect(
-      process.env.MONGODB_URI || 'mongodb://localhost:27017/meetapp',
-      {
-        useNewUrlParser: true,
-        useFindAndModify: true,
-        useUnifiedTopology: true,
-      }
-    );
-
     this.init();
     this.associate();
+    this.mongo();
   }
 
   init() {
@@ -36,6 +28,14 @@ class Database {
       if (model.associate) {
         model.associate(this.connection.models);
       }
+    });
+  }
+
+  mongo() {
+    this.mongoConnection = mongoose.connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useFindAndModify: true,
+      useUnifiedTopology: true,
     });
   }
 }

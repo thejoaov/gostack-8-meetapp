@@ -54,7 +54,7 @@ services:
   queue:
     container_name: 'bee-queue-service'
     build: server
-    command: yarn start:queue
+    command: yarn queue
     environment:
       - DB_HOST=postgres
       - MONGO_HOST=mongo
@@ -72,7 +72,7 @@ services:
     build: server
     ports:
       - '3333:3333'
-    command: yarn start:server
+    command: yarn server
     environment:
       - DB_HOST=postgres
       - MONGO_HOST=mongo

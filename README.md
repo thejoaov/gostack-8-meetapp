@@ -70,10 +70,11 @@ Projeto MeetAppp desenvolvido durante o Bootcamp GoStack 8 da Rocketseat, para o
 
 Antes do projeto ser iniciado, é necessário definir as variáveis de ambiente. Portanto crie um arquivo `.env` ena raiz do projeto, com o conteúdo do arquivo [.env.example](https://github.com/thejoaov/bootcamp-meetapp/blob/master/.env.example). Edite os campos `DB_USER`, `DB_PASS` e `DB_NAME`, isto vai servir pra criar o banco de dados com essas configurações. Para que ocorra a conexão correta com o banco, crie outro arquivo `.env` no diretório `server`, com o conteúdo do arquivo [.env.example](https://github.com/thejoaov/bootcamp-meetapp/blob/master/server/.env.example) dentro da pasta `server`. Também edite os campos `DB_USER`, `DB_PASS` e `DB_NAME`, com os mesmos valores do arquivo .env que foi criado na raiz do projeto.
 
-Assim, o projeto deve ser iniciado, com o seguinte comando na raiz:
+Assim, o projeto (frontend e backend) pode ser iniciado em modo de desenvolvimento, com o seguinte comando na raiz:
 
 ```shell
-$ docker-compose up
+# A opção "-d" inicia os contâineres e não exibe os retornos. Se você quer ver o projeto executanto, não use essa opção.
+$ docker-compose up -d 
 ```
 
   <img src="https://raw.githubusercontent.com/thejoaov/bootcamp-meetapp/master/docs/assets/server/docker-compose-up.gif" height="420">

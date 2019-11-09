@@ -1,13 +1,36 @@
 # Instruções para o Backend
 
-Primeiro, deve-se criar o arquivo de variáveis de ambiente `.env` de acordo com o conteúdo do `.env.example`, substituindo os valores das variáveis `DB_USER`, `DB_PASS` e `DB_NAME`, que irão "dizer" ao docker-compose como ele deve criar o banco de dados.
-A aplicação backend, é rodada na raiz do projeto, com o `docker-compose up`.
-Você também poderá iniciar com o `docker-compose up -d`, assim a aplicação irá rodar em background, sem precisar ficar com a janela do terminal aberta :D. Desta forma, você pode encerrar o servidor com `docker-compose down`
-Porém, para desenvolvimento, é recomendado que seja rodado o comando `docker-compose up` na pasta `server`, para que a aplicação rode utilizando o nodemon.
-Dessa forma o servidor backend irá rodar isoladamente do restante da aplicação, sem o frontend.
-Para parar o servidor, basta pressionar `crtl + c`.
-Importante frisar, que rodando o docker-compose dentro pasta server, a aplicação iniciará em modo de desenvolvimento, utilizando o nodemon tanto no servidor quanto na queue.
+Primeiro, deve-se criar o arquivo de variáveis de ambiente `.env` de acordo com o conteúdo do `.env.example`, substituindo os valores das variáveis `DB_USER`, `DB_PASS` e `DB_NAME`, que irão "dizer" ao docker-compose como ele deve criar o banco de dados, e à aplicação suas variáveis de ambiente.
 
+### Testes
+A aplicação conta com o [Jest](https://jestjs.io/) para testes. Eles estão na pasta `__tests__`, e podem ser executados através do comando `yarn test`. As variáveis de ambiente estão no arquivo `.env.test`.
+Os testes são executados num banco em `sqlite`, dentro da pasta de testes, e sempre que são feitos, a base é reconstruída do zero, portanto, não é necessário alterações nos arquivos de variáveis de ambiente de testes.
+
+##### Modo de produção
+A aplicação deve executar, primeiramente o banco de dados. Para isto, em modo de produção, deve-se executar 
+
+```shell 
+$ docker-compose -f "docker-compose.prod.yml" up -d
+```
+Isso irá inicializar os containers do postgres, redis, e mongodb. Em seguida deve-se realizar o build, já que o `sucrase-node` **não** deve ser executado na produção, por que isso causa perda de desempenho. Recomenda-se primeiro, compilar a aplicação, com o comando `yarn build`, que irá compilar toda a aplicação e jogar na pasta `dist`, com a mesma estrutura de pastas e arquivos. A partir daí, você pode executar o server utilizando o pm2 (ou outro gerenciador de processos de sua escolha): 
+```shell
+$ npx pm2 start "dist/queue" --name "meetapp-queue"
+$ npx pm2 start "dist/server" --name "meetapp-server"
+```
+
+
+##### Modo de desenvolvimento
+Em modo de desenvolvimento, recomenda-se que se utilize de uma base de dados à parte da utilizada na produção, até porque, serviços como o mailhog, e funções como as [seeds do Sequelize](https://sequelize.org/master/manual/migrations.html#creating-first-seed), não são úteis ou podem corromper o banco de dados. Nesse caso, deve-se iniciar o banco de dados com:
+```shell
+$ docker-compose -f "docker-compose.dev.yml" up -d
+```
+Isso irá inicializar os containeres do postgres, do redis, mongodb e também do serviço do mailhog, para depuração do envio de emails.
+Um simples `yarn start` irá inicializar o projeto, utilizando o nodemon, que reinicializará o servidor e a queue caso algum deles sofra alterações nos arquivos.
+
+Os bancos de dados de desenvolvimento, e produção, podem ser desligados com
+```shell
+$ docker-compose -f "docker-compose.<dev ou prod>.yml" down
+```
 ---
 
 #### Sem docker
@@ -27,20 +50,20 @@ Abaixo, os comandos disponíveis de acordo com o `package.json`:
 
 ```json
   "scripts": {
-    // Inicia a aplicação (servidor e queue) com o concurrently em modo de produção
-    "start": "concurrently -k \"yarn start:server\" \"yarn start:queue\"",
-    // Roda as migrations e em seguida inicia apenas o servidor em modo de produção
-    "start:server": "yarn migrate && node dist/server.js",
-    // Inicia apenas a queue em modo de produção
-    "start:queue": "node dist/queue.js",
-    // Roda as migrations e em seguida inicia apenas o servidor com o nodemon em modo de desenvolvimento
-    "dev:server": "yarn migrate && nodemon src/server.js",
-    // Inicia apenas a queue em modo de desenvolvimento
-    "dev:queue": "nodemon src/queue.js",
-    // Roda as migrations
-    "migrate": "sequelize db:migrate",
-    // Faz o build da aplicação com o sucrase-node
-    "build": "sucrase ./src -d ./dist --transforms imports"
+    // Inicia o servidor e a queue usando o concurrently 
+    "start": "concurrently -k \"yarn server\" \"yarn queue\"",
+    // Inicia apenas o servidor com nodemon
+    "server": "nodemon src/server.js",
+    // Inicia apenas a queue com nodemon
+    "queue": "nodemon src/queue.js",
+    // Script de build da aplicação
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    // Roda antes dos testes, criando as migrations no db sqlite
+    "pretest": "NODE_ENV=test sequelize db:migrate",
+    // Roda os testes
+    "test": "NODE_ENV=test jest --forceExit",
+    // Desfaz as migrations no db sqlite
+    "posttest": "NODE_ENV=test sequelize db:migrate:undo:all"
   },
 ```
 

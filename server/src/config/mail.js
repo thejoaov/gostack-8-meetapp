@@ -1,6 +1,6 @@
 export default {
-  host: process.env.MAIL_HOST || 'localhost',
-  port: process.env.MAIL_PORT || '2525',
+  host: process.env.MAIL_HOST,
+  port: process.env.MAIL_PORT,
   secure: false,
   auth: {
     user: process.env.MAIL_USER,
